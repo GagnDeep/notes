@@ -1,0 +1,26 @@
+.ItemName{
+    font-weight: bold;
+    background: #eee;
+    line-height: 40px;
+    padding: 0 10px;
+}
+
+.ItemCheckbox{
+    justify-self: center;
+    align-self:center;
+}
+
+.ItemName:active{
+    background: #ccc;
+}
+
+.CourseListContainer{
+    display: grid;
+    grid-template-columns: 90% 10%;
+    grid-gap: 10px 2px;
+    padding: 10px;
+    grid-auto-rows: 40px;
+    align-items: stretch;
+    overflow: scroll;
+}
+

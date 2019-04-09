@@ -1,0 +1,7 @@
+.DialogBoxContainer{
+    position: relative;
+    z-index: 3;
+    top: 20vh;
+    background: white;
+    margin: 0 auto;
+}

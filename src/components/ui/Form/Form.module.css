@@ -1,0 +1,9 @@
+.Form{
+    position: relative;
+    z-index: 3;
+    width: 80vw;
+    height: 70vh;
+    top: 10vh;
+    background: white;
+    margin: 0 auto;
+}

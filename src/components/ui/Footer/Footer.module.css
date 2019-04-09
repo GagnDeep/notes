@@ -1,0 +1,26 @@
+.FooterContainer{
+    display: grid;
+    grid-auto-flow: column;
+    text-align: center;
+    line-height: 50px;
+}
+i{
+    font-size:1rem;
+}
+.Edit{
+    background: orange;
+    
+}
+.Delete{
+    background: orangered;
+}
+
+.Confirm{
+    background: #05e105;
+}
+.Cancel{
+    background: #ccc;
+}
+a{
+    text-decoration:none;
+}

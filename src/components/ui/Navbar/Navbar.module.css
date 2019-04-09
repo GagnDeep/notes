@@ -1,0 +1,27 @@
+.Navbar{
+    display: grid;
+    grid-template-columns: 15% 70% 15%;
+    text-align: center;
+    line-height: 50px;
+}
+i{
+    font-size: 25px;
+}
+.Navbar .Content{
+    font-weight: bold;
+    font-size: 25px;
+}
+
+
+a{
+    color: black;
+    transition:all .3s linear;
+}
+
+.myactive i{
+    color: red;
+    transform: rotate(45deg);
+}
+/*.Navbar > div{*/
+/*    margin: 10px;*/
+/*}*/

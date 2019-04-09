@@ -1,0 +1,14 @@
+.Edit{
+    background: orange;
+    
+}
+.Delete{
+    background: orangered;
+}
+
+.Confirm{
+    background: #05e105;
+}
+.Cancel{
+    background: #ccc;
+}
