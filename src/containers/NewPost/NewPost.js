@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import Input from './../../components/ui/Input/Input';
 import {withRouter} from 'react-router-dom';
+import {connect} from 'react-redux';
+import * as actionTypes from './../../store/actions/actionTypes';
+import * as actions from './../../store/actions/index'
 
 class NewPost extends Component {
     
@@ -65,6 +68,18 @@ class NewPost extends Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        inputLists: state.inputLists,
+        selectedCourse: state.selectedCourse,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        submit: (data) => dispatch({type: actions.addNew(data)})
+    }
+}
 
 
-export default withRouter(NewPost);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(NewPost));

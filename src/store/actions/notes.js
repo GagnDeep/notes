@@ -17,3 +17,21 @@ export const initialLoad = () => {
         })
     }
 }
+
+
+export const onAddNew = (payload) => {
+    return {
+        type: actionTypes.ON_ADD_NEW,
+        data: payload
+    }
+}
+
+export const addNew = (data) => {
+    return dispatch => {
+        axios.post("https://notes-app-1510f.firebaseio.com/courseList.json", data)
+            .then(res => {
+                console.log(res);
+                dispatch(onAddNew(res.data))
+            })
+    }
+}
