@@ -4,10 +4,9 @@ import Aux from './../../../hoc/Auxilary/Aux';
 import {Link} from 'react-router-dom';
 
 const List = props => {
-    console.log("asjdbasjs")
     
     const {data, clickedHandler, changedHandler, identifier} = props;
-    // debugger;
+    
     const item = (element, i) => (
            
         <Aux key = {element.properties[identifier].value}>

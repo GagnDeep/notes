@@ -2,7 +2,17 @@ import * as actionTypes from './../actions/actions';
 import {objectToArray} from './../utility'
 
 const initialState = {
-    courseList: []
+    courseList: [],
+    inputLists: {
+      course: {
+        "Course Name": "input",
+        "Description": "textbox",
+      },
+      module: {
+        "Module Name": "input",
+        "Description": "textbox"
+      }
+    }
 }
 
  const reducer = (state = initialState, action) => {
