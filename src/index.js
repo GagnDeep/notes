@@ -4,7 +4,8 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import reducer from './store/reducers/reducers';
-import * as actionTypes from './store/actions/actions';
+import * as actionTypes from './store/actions/actionTypes';
+import * as actions from './store/actions/index';
 
 
 import {createStore, applyMiddleware, compose} from 'redux';
@@ -14,7 +15,7 @@ import thunk from 'redux-thunk'
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)) );
 
-store.dispatch(actionTypes.initialLoad());
+store.dispatch(actions.initialLoad());
 
 ReactDOM.render(<Provider store = {store}><App /></Provider>, document.getElementById('root'));
 

@@ -4,7 +4,9 @@ import { BrowserRouter } from 'react-router-dom';
 import { Route, Link, Switch } from 'react-router-dom';
 import axios from 'axios';
 import CourseDisplay from './../CourseDisplay/CourseDisplay-logic';
-import * as actionTypes from './../../store/actions/actions';
+import * as actionTypes from './../../store/actions/actionTypes';
+import * as actions from './../../store/actions/index';
+import {objectToArray} from './../../store/utility';
 
 import { connect } from 'react-redux';
 
@@ -26,16 +28,7 @@ class notes extends Component {
 
     selectedCourse: null,
 
-    inputLists: {
-      course: {
-        "Course Name": "input",
-        "Description": "textbox",
-      },
-      module: {
-        "Module Name": "input",
-        "Description": "textbox"
-      }
-    }
+    
 
   }
 
@@ -207,7 +200,6 @@ class notes extends Component {
 
       selectedCourse: this.state.selectedCourse,
       inputLists: this.state.inputLists,
-      submitHandler: this.props.addCourse,
       courseList: this.props.courseList,
 
     }
@@ -217,13 +209,14 @@ class notes extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    courseList: state.courseList,
+    courseData: state.courseData,
+    inputLists: state.inputLists,
+    courseList: objectToArray(state.courseData)
 
   }
 }
 const mapDispatchToProps = dispatch => {
   return {
-    addCourse: (courseData) => dispatch({ type: actionTypes.add(), courseData: courseData })
   }
 }
 

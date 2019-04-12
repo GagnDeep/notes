@@ -7,9 +7,9 @@ export const addCourse = (state, action) => {
     }
 }
 
-export const objectToArray = obj => Object.keys(obj).map(el => {
+export const objectToArray = obj => obj?Object.keys(obj).map(el => {
     return {
         id: el,
         ...obj[el]
     }
-})
+}):[];

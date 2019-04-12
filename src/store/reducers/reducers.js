@@ -2,17 +2,7 @@ import * as actionTypes from './../actions/actions';
 import {objectToArray} from './../utility'
 
 const initialState = {
-    courseList: [],
-    inputLists: {
-      course: {
-        "Course Name": "input",
-        "Description": "textbox",
-      },
-      module: {
-        "Module Name": "input",
-        "Description": "textbox"
-      }
-    }
+    courseList: {},
 }
 
  const reducer = (state = initialState, action) => {
@@ -23,7 +13,7 @@ const initialState = {
             
         case actionTypes.ON_INITIAL_LOAD:
             return {
-                courseList: objectToArray(action.courseList)
+                courseData: action.data
             }
         default:
             return state
