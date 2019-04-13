@@ -66,3 +66,20 @@ export const onCheckboxChange = (element) => {
       element: element
   }
 }
+
+export const onCourseDelete = () => {
+    return {
+        type: actionTypes.ON_COURSE_DELETE
+    }
+}
+
+export const courseDelete = (selectedItems) => {
+    return dispatch => {
+        selectedItems.map(e => 
+            axios.delete(`https://notes-app-1510f.firebaseio.com/courseList/${e.id}.json`));
+            
+        Promise.all(selectedItems).then(() => {
+            dispatch(onCourseDelete())
+        })
+    }
+}

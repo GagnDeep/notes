@@ -43,6 +43,15 @@ const updateSelectedItems = (state, action) => {
     return selectedItems
 }
 
+const deleteCourse = (state, action) => {
+    let courseData = {...state.courseData}
+    
+    Object.keys(state.selectedItems).forEach(e => {
+        delete courseData[e]
+    })
+    return courseData
+}
+
 const reducer = (state = initialState, action) => {
     switch(action.type) {
             
@@ -76,6 +85,16 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 courseData: updateCheckboxes(state, action),
                 selectedItems: updateSelectedItems(state, action)
+            }
+            
+        case actionTypes.ON_COURSE_DELETE:
+            let tempState = {
+                ...state,
+                courseData: deleteCourse(state, action)
+            }
+            return {
+                ...tempState,
+                selectedItems: updateSelectedItems(tempState, action)
             }
             
         default:

@@ -6,3 +6,5 @@ export const ON_FAIL_ADD_NEW = "ON_FAIL_ADD_NEW";
 export const ON_FINISH_ADD_NEW = "ON_FINISH_ADD_NEW";
 
 export const ON_CHECKBOX_CHANGE = "ON_CHECKBOX_CHANGE";
+
+export const ON_COURSE_DELETE = "ON_COURSE_DELETE";

@@ -3,5 +3,6 @@ export {
     onInitAddNew,
     addNew,
     onFinishAddNew,
-    onCheckboxChange
+    onCheckboxChange,
+    courseDelete
 } from './notes';

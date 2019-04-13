@@ -114,19 +114,7 @@ class notes extends Component {
   
 
   confirmedHandler = () => {
-    let courseList = [...this.props.courseList];
-    let selectedItems = [...this.state.selectedItems];
-    let identifier = this.getIdentifier();
-
-    selectedItems.forEach(e => {
-      courseList.splice(courseList.index(e.properties[identifier].value, identifier), 1);
-      axios.delete(`https://notes-app-1510f.firebaseio.com/courseList/${e.id}.json`)
-    })
-
-    courseList = this.resetCheckboxes(courseList);
-
-
-    this.setState({ courseList: courseList, selectedItems: [], showConfirmDialog: false })
+    this.props.onCourseDelete(this.props.selectedItems)
   }
 
   getIdentifier = () => {
@@ -172,7 +160,7 @@ class notes extends Component {
       },
 
       footer: {
-        showFooter: this.state.selectedItems.length !== 0,
+        showFooter: this.props.selectedItems.length !== 0,
         selectedItems: this.props.selectedItems,
         showConfirmDialog: this.state.showConfirmDialog,
 
@@ -211,7 +199,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
   return {
     onInitAdd: () => dispatch(actions.onInitAddNew()),
-    onCheckboxChange: (element) => dispatch(actions.onCheckboxChange(element))
+    onCheckboxChange: (element) => dispatch(actions.onCheckboxChange(element)),
+    onCourseDelete: (selectedItems) => dispatch(actions.courseDelete(selectedItems))
   }
 }
 
