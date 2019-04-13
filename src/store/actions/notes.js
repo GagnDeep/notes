@@ -38,6 +38,12 @@ export const onSuccessAddNew = (payload) => {
     }
 }
 
+export const onFinishAddNew = () => {
+    return {
+        type: actionTypes.ON_FINISH_ADD_NEW
+    }
+}
+
 export const addNew = (data) => {
     return dispatch => {
         axios.post("https://notes-app-1510f.firebaseio.com/courseList.json", data)

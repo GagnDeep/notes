@@ -53,7 +53,6 @@ class NewPost extends Component {
         const tempObj = {...this.state};
         tempObj["date"] = new Date;
         this.props.onAddSuccess(tempObj);
-        this.props.history.replace("/")
     }
     
     inputChangedHandler = (event,element) => {
@@ -67,6 +66,10 @@ class NewPost extends Component {
         this.setState({
             properties: properties
         });
+    }
+    
+    componentWillUnmount(){
+        this.props.onFinishAdd()
     }
 }
 
@@ -83,7 +86,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onAddInit: () => dispatch(actions.onInitAddNew()),
-        onAddSuccess: (data) => dispatch(actions.addNew(data))
+        onAddSuccess: (data) => dispatch(actions.addNew(data)),
+        onFinishAdd: () => dispatch(actions.onFinishAddNew())
     }
 }
 

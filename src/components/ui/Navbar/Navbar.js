@@ -24,7 +24,9 @@ const Navbar = props => {
                     {props.children}
                 </div>
             {props.showNew?
-                (<NavLink to = {path} activeClassName = {styles.myactive}>
+                (<NavLink to = {path} 
+                      activeClassName = {styles.myactive} 
+                      onClick = {props.newClickedHandler}>
                         <i className="fas fa-plus"></i>
                 </NavLink>):null}
         </div>

@@ -12,18 +12,15 @@ import CourseDisplay from './../CourseDisplay/CourseDisplay';
 const Notes  = props => {
     const {nav, footer, selectedCourse, inputLists, submitHandler, list, courseList} = props;
     
-    console.log(courseList)
-    
-    console.log(inputLists)
     
     return (
         <div className = {styles.Container}>
-            <Navbar newHandler = {nav.newHandler} showNew = {nav.showNew}>
+            <Navbar newClickedHandler = {nav.newClickedHandler} showNew = {nav.showNew}>
                 {nav.content}
             </Navbar>
                 
             <Switch>
-                <Route path = "/new-post/" exact render = {() =>(
+                <Route path = "/new-post" exact render = {() =>(
                     <NewPost />
                 )} />
                 

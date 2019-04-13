@@ -16,7 +16,6 @@ const initialState = {
       }
     },
     selectedItems: [],
-    adding: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -39,6 +38,12 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 courseData: {...state.courseData, ...action.data},
                 adding: true
+            }
+            
+        case actionTypes.ON_FINISH_ADD_NEW:
+            return {
+                ...state,
+                adding:false
             }
         default:
             return state

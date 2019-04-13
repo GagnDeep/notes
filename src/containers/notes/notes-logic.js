@@ -123,6 +123,8 @@ class notes extends Component {
     this.tempObj = { ...this.state.selectedItems[0] }
     this.setState({ editItem: true })
   }
+  
+  
 
   confirmedHandler = () => {
     let courseList = [...this.props.courseList];
@@ -168,6 +170,10 @@ class notes extends Component {
 
   itemClickedHandler = (element) => {
     this.setState({ selectedCourse: element })
+  }
+  
+  newClickedHandler = () => {
+    this.props.onInitAdd();
   }
 
   notes_props = () => {
@@ -218,6 +224,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = dispatch => {
   return {
+    onInitAdd: () => dispatch(actions.onInitAddNew())
   }
 }
 
