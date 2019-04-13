@@ -18,10 +18,22 @@ export const initialLoad = () => {
     }
 }
 
-
-export const onAddNew = (payload) => {
+export const onInitAddNew = () => {
     return {
-        type: actionTypes.ON_ADD_NEW,
+        type: actionTypes.ON_INIT_ADD_NEW
+    }
+}
+
+export const onFailAddNew = error => {
+    return {
+        type: actionTypes.ON_FAIL_ADD_NEW,
+        error: error
+    }
+}
+
+export const onSuccessAddNew = (payload) => {
+    return {
+        type: actionTypes.ON_SUCCESS_ADD_NEW,
         data: payload
     }
 }
@@ -30,8 +42,11 @@ export const addNew = (data) => {
     return dispatch => {
         axios.post("https://notes-app-1510f.firebaseio.com/courseList.json", data)
             .then(res => {
-                console.log(res);
-                dispatch(onAddNew(res.data))
+                //res.data.name: as response from firebase return new id of object
+                //in an object with property name
+                
+                data = {[res.data.name]: data}
+                dispatch(onSuccessAddNew(data))
             })
     }
 }

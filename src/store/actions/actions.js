@@ -15,7 +15,9 @@ export const onInitialLoad = (payload) => {
     }
 }
 export const initialLoad = payload => {
+    console.log("---------asbfdakjfdba=----------------")
     return dispatch => {
+        console.log("---------fajfjanmfbm--------------")
         axios.get("https://notes-app-1510f.firebaseio.com/courseList.json")
             .then(res => dispatch(onInitialLoad({courseList: res.data})))
     }

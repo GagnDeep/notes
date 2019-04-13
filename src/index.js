@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import reducer from './store/reducers/reducers';
+import reducer from './store/reducers/notes';
 import * as actionTypes from './store/actions/actionTypes';
 import * as actions from './store/actions/index';
 
@@ -14,6 +14,7 @@ import thunk from 'redux-thunk'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)) );
+
 
 store.dispatch(actions.initialLoad());
 

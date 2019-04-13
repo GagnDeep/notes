@@ -1,2 +1,6 @@
 export const ON_INITIAL_LOAD = "ON_INITIAL_LOAD";
-export const ON_ADD_NEW = "ON_ADD_NEW";
+
+export const ON_SUCCESS_ADD_NEW = "ON_SUCCESS_ADD_NEW";
+export const ON_INIT_ADD_NEW = "ON_INIT_ADD_NEW";
+export const ON_FAIL_ADD_NEW = "ON_FAIL_ADD_NEW";
+export const ON_CANCEL_ADD_NEW = "ON_CANCEL_ADD_NEW";

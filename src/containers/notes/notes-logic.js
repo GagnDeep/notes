@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Notes from './notes';
 import { BrowserRouter } from 'react-router-dom';
-import { Route, Link, Switch } from 'react-router-dom';
+import { Route, Link, Switch, withRouter} from 'react-router-dom';
 import axios from 'axios';
 import CourseDisplay from './../CourseDisplay/CourseDisplay-logic';
 import * as actionTypes from './../../store/actions/actionTypes';
@@ -208,6 +208,7 @@ class notes extends Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state)
   return {
     courseData: state.courseData,
     inputLists: state.inputLists,
@@ -220,4 +221,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps)(notes);
+export default withRouter(connect(mapStateToProps)(notes));

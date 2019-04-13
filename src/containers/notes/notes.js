@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from './../../components/ui/Navbar/Navbar';
 import styles from './notes.module.css';
 import Footer from './../../components/ui/Footer/Footer';
-import {Route, Link} from 'react-router-dom';
+import {Route, Link, Switch} from 'react-router-dom';
 import NewPost from './../NewPost/NewPost';
 import List from './../../components/Layout/List/List';
 import CourseDisplay from './../CourseDisplay/CourseDisplay';
@@ -22,11 +22,9 @@ const Notes  = props => {
                 {nav.content}
             </Navbar>
                 
-            
-                <Route path = "/new-post" render = {() =>(
-                    <NewPost inputLists = {inputLists} 
-                        submitHandler = {submitHandler}
-                        selectedCourse = {selectedCourse}/>
+            <Switch>
+                <Route path = "/new-post/" exact render = {() =>(
+                    <NewPost />
                 )} />
                 
                 <Route path = "/edit-post" exact render = {() => (
@@ -36,7 +34,7 @@ const Notes  = props => {
                         selectedItems = {footer.selectedItems}/>
                 )}/>
                 
-                <Route path = "/" exact render = {() => (
+              <Route path = "/" exact render = {() => (
                     <List 
               		    data = {courseList} 
               		    changedHandler = {list.changedHandler}
@@ -52,7 +50,7 @@ const Notes  = props => {
                         /> 
                     )}/>
                 
-                
+                </Switch>
                 
              {footer.showFooter?
              <Footer 

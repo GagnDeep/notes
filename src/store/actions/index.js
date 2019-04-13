@@ -1,4 +1,6 @@
 export {
     initialLoad,
-    addNew
+    onInitAddNew,
+    addNew,
+    
 } from './notes';

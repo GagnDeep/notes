@@ -1,18 +1,19 @@
 import React, {Component} from 'react';
 import Input from './../../components/ui/Input/Input';
 import {withRouter} from 'react-router-dom';
+import {Redirect} from 'react-router'
 import {connect} from 'react-redux';
 import * as actionTypes from './../../store/actions/actionTypes';
 import * as actions from './../../store/actions/index'
 
 class NewPost extends Component {
     
-    constructor(props){
-        super(props)
+    componentWillMount(){
+        this.props.onAddInit();
         
         let identifier;
         
-        if (!props.selectedCourse)
+        if (!this.props.selectedCourse)
             identifier = "course";
         else
             identifier = "module";
@@ -26,32 +27,33 @@ class NewPost extends Component {
             date = new Date;
             checked = false;
         }
-        if(props.selectedItems && props.selectedItems.length === 1)
-            this.state = {...props.selectedItems[0]}
-        else
-            this.state = new item(props.inputLists[identifier]);
+            this.setState(new item(this.props.inputLists[identifier]));
         
     }
     
     render(){
-        return (
-      	       <Input list = {this.state.properties} 
+        
+        let form = <Input list = {this.state.properties} 
       	              editItem = {this.state.editItem}  
       	              changedHandler = {this.inputChangedHandler}
       	              clickedHandler = {this.submitHandler}/>
-        );
+        
+        if(this.props.adding)
+            form = <Redirect to = '/'/>
+        return form;
     }
     
     submitHandler = () => {
-        const {selectedItems} = this.props;
-        let previousObj = null
+        // const {selectedItems} = this.props;
+        // let previousObj = null
         
-        if(selectedItems && selectedItems.length === 1){
-            previousObj = selectedItems[0]
-        }
+        // if(selectedItems && selectedItems.length === 1){
+        //     previousObj = selectedItems[0]
+        // }
         const tempObj = {...this.state};
         tempObj["date"] = new Date;
-        this.props.submitHandler(tempObj, previousObj);
+        this.props.onAddSuccess(tempObj);
+        this.props.history.replace("/")
     }
     
     inputChangedHandler = (event,element) => {
@@ -69,17 +71,21 @@ class NewPost extends Component {
 }
 
 const mapStateToProps = state => {
+    
     return {
         inputLists: state.inputLists,
         selectedCourse: state.selectedCourse,
+        selectedItems: state.selectedItems,
+        adding: state.adding
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        submit: (data) => dispatch({type: actions.addNew(data)})
+        onAddInit: () => dispatch(actions.onInitAddNew()),
+        onAddSuccess: (data) => dispatch(actions.addNew(data))
     }
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(NewPost));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NewPost));
