@@ -25,10 +25,7 @@ const Notes  = props => {
                 )} />
                 
                 <Route path = "/edit-post" exact render = {() => (
-                    <NewPost inputLists = {inputLists} 
-                        submitHandler = {submitHandler}
-                        selectedCourse = {selectedCourse}
-                        selectedItems = {footer.selectedItems}/>
+                    <NewPost />
                 )}/>
                 
               <Route path = "/" exact render = {() => (

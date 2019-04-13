@@ -68,10 +68,16 @@ const reducer = (state = initialState, action) => {
             }
             
         case actionTypes.ON_SUCCESS_ADD_NEW:
-            return {
+            
+            let temp = {
                 ...state,
                 courseData: {...state.courseData, ...action.data},
-                adding: true
+                adding: true,  
+            }
+            
+            return {
+                ...temp,
+                selectedItems: updateSelectedItems(temp, action)
             }
             
         case actionTypes.ON_FINISH_ADD_NEW:

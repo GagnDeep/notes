@@ -28,7 +28,12 @@ class NewPost extends Component {
             date = new Date;
             checked = false;
         }
-            this.setState(new item(this.props.inputLists[identifier]));
+        
+        let state = this.props.selectedItems.length === 1? 
+                this.props.selectedItems[0]
+            : new item(this.props.inputLists[identifier])
+        
+        this.setState(state);
         
     }
     

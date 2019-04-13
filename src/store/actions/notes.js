@@ -46,13 +46,27 @@ export const onFinishAddNew = () => {
 
 export const addNew = (data) => {
     return dispatch => {
-        axios.post("https://notes-app-1510f.firebaseio.com/courseList.json", data)
-            .then(res => {
+        
+        let promise
+        
+        if(data.id) 
+            promise = axios.put(`https://notes-app-1510f.firebaseio.com/courseList/${data.id}.json`,data)
+        else 
+            promise = axios.post("https://notes-app-1510f.firebaseio.com/courseList.json", data)
+        
+        promise.then(res => {
                 //res.data.name: as response from firebase return new id of object
                 //in an object with property name
+                let courseData = {[res.data.name]: data}
                 
-                data = {[res.data.name]: data}
-                dispatch(onSuccessAddNew(data))
+                if(data.id) {
+                    let id = data.id;
+                    data.checked = false;
+                    delete data.id 
+                    courseData = {[id]: data}
+                }
+                
+                dispatch(onSuccessAddNew(courseData))
                 //this onFinishAddNew call can be eliminated 
                 //by not using course approach
                 dispatch(onFinishAddNew())
