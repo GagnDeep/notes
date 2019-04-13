@@ -5,6 +5,7 @@ import {Redirect} from 'react-router'
 import {connect} from 'react-redux';
 import * as actionTypes from './../../store/actions/actionTypes';
 import * as actions from './../../store/actions/index'
+import {objectToArray} from './../../store/utility'
 
 class NewPost extends Component {
     
@@ -77,7 +78,7 @@ const mapStateToProps = state => {
     return {
         inputLists: state.inputLists,
         selectedCourse: state.selectedCourse,
-        selectedItems: state.selectedItems,
+        selectedItems: objectToArray(state.selectedItems),
         adding: state.adding
     }
 }

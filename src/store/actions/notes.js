@@ -59,3 +59,10 @@ export const addNew = (data) => {
             })
     }
 }
+
+export const onCheckboxChange = (element) => {
+  return {
+      type: actionTypes.ON_CHECKBOX_CHANGE,
+      element: element
+  }
+}

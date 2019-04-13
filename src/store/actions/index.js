@@ -2,5 +2,6 @@ export {
     initialLoad,
     onInitAddNew,
     addNew,
-    onFinishAddNew
+    onFinishAddNew,
+    onCheckboxChange
 } from './notes';

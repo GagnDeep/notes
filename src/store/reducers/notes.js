@@ -15,7 +15,32 @@ const initialState = {
         "Description": "textbox"
       }
     },
-    selectedItems: [],
+    selectedItems: {},
+}
+
+const updateCheckboxes = (state, action) => {
+    const {courseData} = state,
+          id = action.element.id;
+    
+    if (courseData[id]) {
+      let tempObj = { ...courseData[id] }
+      tempObj.checked = !courseData[id].checked;
+
+      courseData[id] = tempObj; 
+    }
+    
+    return courseData
+}
+
+const updateSelectedItems = (state, action) => {
+    let {courseData} = state, selectedItems = {};
+    
+    
+    Object.keys(courseData).forEach(e => {
+        if(courseData[e].checked)
+            selectedItems[e] = courseData[e]
+    })
+    return selectedItems
 }
 
 const reducer = (state = initialState, action) => {
@@ -45,6 +70,14 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 adding:false
             }
+            
+        case actionTypes.ON_CHECKBOX_CHANGE:
+            return {
+                ...state,
+                courseData: updateCheckboxes(state, action),
+                selectedItems: updateSelectedItems(state, action)
+            }
+            
         default:
             return state
     }

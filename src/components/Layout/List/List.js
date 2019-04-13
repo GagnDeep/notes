@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './List.module.css';
 import Aux from './../../../hoc/Auxilary/Aux';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 
 const List = props => {
     
@@ -18,7 +19,7 @@ const List = props => {
             </Link>
             
             <input type = "checkbox" 
-                   onChange = {() => changedHandler(element.properties[identifier].value)}
+                   onChange = {() => changedHandler(element)}
                    className = {styles.ItemCheckbox}
                    checked = {element.checked}/>
                    
@@ -34,6 +35,7 @@ const List = props => {
     
     
 }
+
 
 
 export default List;

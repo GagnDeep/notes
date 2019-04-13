@@ -75,21 +75,8 @@ class notes extends Component {
     this.setState({ selectedItems: selectedItems });
   }
 
-  checkboxChangedHandler = itemName => {
-    let identifier = this.getIdentifier(),
-      courseList = [...this.props.courseList]
-
-    let index = courseList.index(itemName, identifier);
-
-    if (index !== -1) {
-      let tempObj = { ...courseList[index] }
-      tempObj.checked = !courseList[index].checked;
-
-      courseList[index] = tempObj;
-      this.setState({ courseList: courseList }, this.checkedListItems)
-    }
-    else
-      throw courseList;
+  checkboxChangedHandler = element => {
+     this.props.onCheckboxChange(element)
   }
 
   // submitHandler = (obj, prevObj) => {
@@ -179,14 +166,14 @@ class notes extends Component {
   notes_props = () => {
     return {
       nav: {
-        showNew: !this.state.selectedItems.length,
+        showNew: !this.props.selectedItems.length,
         newHandler: this.newClickedHandler,
         content: !this.state.selectedCourse ? "Notes" : this.state.selectedCourse.properties["Course Name"].value
       },
 
       footer: {
         showFooter: this.state.selectedItems.length !== 0,
-        selectedItems: this.state.selectedItems,
+        selectedItems: this.props.selectedItems,
         showConfirmDialog: this.state.showConfirmDialog,
 
         handlers: {
@@ -214,18 +201,20 @@ class notes extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state)
   return {
     courseData: state.courseData,
     inputLists: state.inputLists,
-    courseList: objectToArray(state.courseData)
-
+    courseList: objectToArray(state.courseData),
+    selectedItems: objectToArray(state.selectedItems)
   }
 }
 const mapDispatchToProps = dispatch => {
   return {
-    onInitAdd: () => dispatch(actions.onInitAddNew())
+    onInitAdd: () => dispatch(actions.onInitAddNew()),
+    onCheckboxChange: (element) => dispatch(actions.onCheckboxChange(element))
   }
 }
 
-export default withRouter(connect(mapStateToProps)(notes));
+
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(notes));
