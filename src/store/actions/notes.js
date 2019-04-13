@@ -53,6 +53,9 @@ export const addNew = (data) => {
                 
                 data = {[res.data.name]: data}
                 dispatch(onSuccessAddNew(data))
+                //this onFinishAddNew call can be eliminated 
+                //by not using course approach
+                dispatch(onFinishAddNew())
             })
     }
 }

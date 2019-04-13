@@ -53,6 +53,7 @@ class NewPost extends Component {
         const tempObj = {...this.state};
         tempObj["date"] = new Date;
         this.props.onAddSuccess(tempObj);
+        this.props.history.replace("/")
     }
     
     inputChangedHandler = (event,element) => {
@@ -68,9 +69,7 @@ class NewPost extends Component {
         });
     }
     
-    componentWillUnmount(){
-        this.props.onFinishAdd()
-    }
+    
 }
 
 const mapStateToProps = state => {
